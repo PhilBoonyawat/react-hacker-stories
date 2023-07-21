@@ -10,7 +10,7 @@ const welcome = {
 
 const App = () => {
   console.log("App renders");
-  const [name, changeName] = React.useState("");
+  const [name, changeName] = React.useState("hil");
   const stories = [
     {
       title:'React',
@@ -72,7 +72,7 @@ const InName = (props) => {
   return (
     <div>
       <label htmlFor="firstname">Firstname: </label>
-      <input type="text" id="firstname" onChange={props.changeName} />
+      <input type="text" id="firstname" value={props.name} onChange={props.changeName} />
       <p>My name is {props.name}</p>
     </div>
     
