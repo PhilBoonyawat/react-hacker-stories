@@ -46,7 +46,7 @@ const List = (props) => {
   return (
     <ul>
       {props.list.filter((item) => (
-        item.author == props.name
+        item.author.toLowerCase().includes(props.name.toLowerCase())
       ))
       .map((item) => 
            (
