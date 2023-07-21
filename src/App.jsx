@@ -25,7 +25,6 @@ const App = () =>
   
  (
     <div>
-      <Label />
       <InName />
       <h1>{welcome.greeting} {welcome.title}</h1>
 
@@ -48,21 +47,22 @@ const List = () =>
   );
 
 
-const Label = () => 
-  (
-    <div>
-       <label htmlFor="firstname">Firstname: </label>
-    </div>
-   
-  );
 
 
-const InName = () => 
-  (
+const InName = () => {
+  const handleChange = (event) => {
+    // synthetic event
+    console.log(event);
+    // value of target(input HTML element)
+    console.log(event.target.value);
+  }
+  return (
     <div>
-      <input type="text" id="firstname" />
+      <label htmlFor="firstname">Firstname: </label>
+      <input type="text" id="firstname" onChange={handleChange} />
     </div>
     
   );
+  }
 
 export default App;
