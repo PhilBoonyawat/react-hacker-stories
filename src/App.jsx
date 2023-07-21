@@ -6,60 +6,74 @@ const welcome = {
   greeting: 'Hey'
 };
 
-const list = [
-  {
-    title:'React',
-    author: "Phil",
-    points: 3,
-    id: "sfasfasdfw23823d"
-  },
-  {
-    title: "G",
-    author: "Y",
-    points: 10,
-    id: "9f9hf9s8fh9ufb9"
-  }
-];
 
-const App = () => 
-  
- (
+
+const App = () => {
+  console.log("App renders");
+  const [name, changeName] = React.useState("");
+  const stories = [
+    {
+      title:'React',
+      author: "Phil",
+      points: 3,
+      id: "sfasfasdfw23823d"
+    },
+    {
+      title: "G",
+      author: "Y",
+      points: 10,
+      id: "9f9hf9s8fh9ufb9"
+    }
+  ];
+  const handleNameChange = (event) => {
+    changeName(event.target.value);
+  }
+
+ return (
     <div>
-      <InName />
+      <InName name={name} changeName={changeName}/>
       <h1>{welcome.greeting} {welcome.title}</h1>
 
       <hr/>
 
-      <List />
+      <List list={stories} name={name}/>
     </div>
   );
+ }
 
-
-const List = () => 
-  (
+const List = (props) => {
+  console.log("List renders");
+  return (
     <ul>
-      {list.map((item) => 
+      {props.list.filter((item) => (
+        item.author == props.name
+      ))
+      .map((item) => 
            (
-           <li key={item.id}><span>{item.title}</span></li>
+           <Item key={item.id} item={item} />
            )
         )}
     </ul>
   );
+           }
 
+const Item = (props) => {
+  console.log("Item renders");
+  return (
+    <li>
+      <span>{props.item.title}</span>
+      <span>{props.item.author}</span>
+    </li>
+  );
+}
 
-
-
-const InName = () => {
-  const handleChange = (event) => {
-    // synthetic event
-    console.log(event);
-    // value of target(input HTML element)
-    console.log(event.target.value);
-  }
+const InName = (props) => {
+  console.log("InName renders");
   return (
     <div>
       <label htmlFor="firstname">Firstname: </label>
-      <input type="text" id="firstname" onChange={handleChange} />
+      <input type="text" id="firstname" onChange={props.changeName} />
+      <p>My name is {props.name}</p>
     </div>
     
   );
