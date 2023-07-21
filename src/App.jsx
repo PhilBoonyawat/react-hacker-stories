@@ -19,11 +19,11 @@ const list = [
     points: 10,
     id: "9f9hf9s8fh9ufb9"
   }
-]
+];
 
-const App = () => {
+const App = () => 
   
-  return (
+ (
     <div>
       <Label />
       <InName />
@@ -34,34 +34,35 @@ const App = () => {
       <List />
     </div>
   );
-}
 
-const List = () => {
-  return (
+
+const List = () => 
+  (
     <ul>
-      {list.map((item) => {
-          return <li key={item.id}><span>{item.title}</span></li>
-        })}
+      {list.map((item) => 
+           (
+           <li key={item.id}><span>{item.title}</span></li>
+           )
+        )}
     </ul>
-  )
-}
+  );
 
-function Label() {
-  return (
+
+const Label = () => 
+  (
     <div>
        <label htmlFor="firstname">Firstname: </label>
     </div>
    
-  )
-}
+  );
 
-const InName = () => {
-  return (
+
+const InName = () => 
+  (
     <div>
       <input type="text" id="firstname" />
     </div>
     
-  )
-}
+  );
 
 export default App;
