@@ -31,7 +31,7 @@ const App = () => {
 
  return (
     <div>
-      <InName name={name} changeName={changeName}/>
+      <InName name={name} changeName={handleNameChange}/>
       <h1>{welcome.greeting} {welcome.title}</h1>
 
       <hr/>
