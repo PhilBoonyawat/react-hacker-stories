@@ -21,7 +21,7 @@ const list = [
   }
 ]
 
-function App() {
+const App = () => {
   
   return (
     <div>
@@ -36,7 +36,7 @@ function App() {
   );
 }
 
-function List() {
+const List = () => {
   return (
     <ul>
       {list.map(function(item) {
@@ -55,7 +55,7 @@ function Label() {
   )
 }
 
-function InName() {
+const InName = () => {
   return (
     <div>
       <input type="text" id="firstname" />
