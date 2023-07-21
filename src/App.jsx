@@ -25,19 +25,43 @@ function App() {
   
   return (
     <div>
-      <label htmlFor="firstname">Firstname: </label>
-      <input type="text" id="firstname" />
+      <Label />
+      <InName />
       <h1>{welcome.greeting} {welcome.title}</h1>
 
       <hr/>
 
-      <ul>
-        {list.map(function(item) {
-          return <li key={item.id}><span>{item.title}</span></li>
-        })}
-      </ul>
+      <List />
     </div>
   );
+}
+
+function List() {
+  return (
+    <ul>
+      {list.map(function(item) {
+          return <li key={item.id}><span>{item.title}</span></li>
+        })}
+    </ul>
+  )
+}
+
+function Label() {
+  return (
+    <div>
+       <label htmlFor="firstname">Firstname: </label>
+    </div>
+   
+  )
+}
+
+function InName() {
+  return (
+    <div>
+      <input type="text" id="firstname" />
+    </div>
+    
+  )
 }
 
 export default App;
