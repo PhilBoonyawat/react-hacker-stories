@@ -37,16 +37,17 @@ const App = () => {
       <hr/>
 
       <List list={stories} name={name}/>
+      <CacheButton/>
     </div>
   );
  }
 
-const List = (props) => {
+const List = ({list, name}) => {
   console.log("List renders");
   return (
     <ul>
-      {props.list.filter((item) => (
-        item.author.toLowerCase().includes(props.name.toLowerCase())
+      {list.filter((item) => (
+        item.author.toLowerCase().includes(name.toLowerCase())
       ))
       .map((item) => 
            (
@@ -57,26 +58,39 @@ const List = (props) => {
   );
            }
 
-const Item = (props) => {
+const Item = ({item}) => {
   console.log("Item renders");
   return (
     <li>
-      <span>{props.item.title}</span>
-      <span>{props.item.author}</span>
+      <span>{item.title}</span>
+      <span>{item.author}</span>
     </li>
   );
 }
 
-const InName = (props) => {
+const InName = ({name, changeName}) => {
   console.log("InName renders");
+  
   return (
     <div>
       <label htmlFor="firstname">Firstname: </label>
-      <input type="text" id="firstname" value={props.name} onChange={props.changeName} />
-      <p>My name is {props.name}</p>
+      <input type="text" id="firstname" value={name} onChange={changeName} />
+      <p>My name is {name}</p>
     </div>
     
   );
   }
+
+const CacheButton = () => {
+  let root = document.getElementById('root');
+  function clearCache() {
+    root.innerHTML = "buttonclicked";
+    windows.location.reload(true); 
+  }
+  
+  return (
+    <button onClick={clearCache}>Clear Cache</button>
+  )
+}
 
 export default App;
