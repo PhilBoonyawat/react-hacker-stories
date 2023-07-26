@@ -49,21 +49,21 @@ const List = ({list, name}) => {
       {list.filter((item) => (
         item.author.toLowerCase().includes(name.toLowerCase())
       ))
-      .map((item) => 
+      .map(({id, ...item}) => 
            (
-           <Item key={item.id} item={item} />
+           <Item key={id} {...item} />
            )
         )}
     </ul>
   );
            }
 
-const Item = ({item}) => {
+const Item = ({title, author}) => {
   console.log("Item renders");
   return (
     <li>
-      <span>{item.title}</span>
-      <span>{item.author}</span>
+      <span>{title}</span>
+      <span>{author}</span>
     </li>
   );
 }
