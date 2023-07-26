@@ -10,7 +10,16 @@ const welcome = {
 
 const App = () => {
   console.log("App renders");
-  const [name, changeName] = React.useState("hil");
+  const [name, changeName] = React.useState(localStorage.getItem('name') || "hi");
+  
+  React.useEffect(() => {
+    localStorage.setItem('name', name);
+  }, [name]);
+
+  const handleNameChange = (event) => {
+    changeName(event.target.value);
+  }
+
   const stories = [
     {
       title:'React',
@@ -25,9 +34,9 @@ const App = () => {
       id: "9f9hf9s8fh9ufb9"
     }
   ];
-  const handleNameChange = (event) => {
-    changeName(event.target.value);
-  }
+  
+
+  
 
  return (
     <div>
@@ -49,21 +58,21 @@ const List = ({list, name}) => {
       {list.filter((item) => (
         item.author.toLowerCase().includes(name.toLowerCase())
       ))
-      .map(({id, ...item}) => 
+      .map((item) => 
            (
-           <Item key={id} {...item} />
+           <Item key={item.id} item={item} />
            )
         )}
     </ul>
   );
            }
 
-const Item = ({title, author}) => {
+const Item = ({item}) => {
   console.log("Item renders");
   return (
     <li>
-      <span>{title}</span>
-      <span>{author}</span>
+      <span>{item.title}</span>
+      <span>{item.author}</span>
     </li>
   );
 }
