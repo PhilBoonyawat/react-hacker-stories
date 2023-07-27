@@ -1,4 +1,5 @@
 import * as React from 'react';
+//import { clear } from 'local-storage';
 
 // define variable outside function to avoid re-defining it on every function call
 const welcome = {
@@ -91,14 +92,36 @@ const InName = ({name, changeName}) => {
   }
 
 const CacheButton = () => {
-  let root = document.getElementById('root');
-  function clearCache() {
-    root.innerHTML = "buttonclicked";
-    windows.location.reload(true); 
-  }
+  const clearData = () => {
+    // clear cache
+      caches.keys().then((names) => {
+          names.forEach((name) => {
+              caches.delete(name);
+          });
+      });
+      // clear local storage
+      window.localStorage.clear();
+      // clear session storage
+      wimdow.sessionStorage.clear();
+      // unregister service workers
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+        .getRegistrations()
+        .then(function (registrations) {
+           for (let registration of registrations) {
+              registration.unregister()
+           }
+        })
+     }
+      alert('Complete Cache Cleared')
+  };
+
+ 
+
+
   
   return (
-    <button onClick={clearCache}>Clear Cache</button>
+    <button onClick={clearData}>Clear Data</button>
   )
 }
 
